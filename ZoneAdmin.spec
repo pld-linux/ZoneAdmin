@@ -97,3 +97,4 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_appdir}/tpl/Boxes/img
 %{_appdir}/tpl/Boxes/img/*.jpg
 %{_appdir}/tpl/Boxes/img/*.gif
+%dir %attr(770,root,http) %{_appdir}/templates_c
