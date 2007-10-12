@@ -1,0 +1,22 @@
+diff -ur ZoneAdmin-0.2-beta1/index.php ZoneAdmin-0.2-beta1.new/index.php
+--- ZoneAdmin-0.2-beta1/index.php	2007-09-27 12:12:39.000000000 +0200
++++ ZoneAdmin-0.2-beta1.new/index.php	2007-10-12 21:27:14.524592357 +0200
+@@ -13,7 +13,7 @@
+ 
+ // vim:tabstop=2:expandtab:shiftwidth=2:filetype=php:syntax:ruler:
+ 
+-require('./includes/smarty/libs/Smarty.class.php');
++require('/usr/share/php/Smarty/Smarty.class.php');
+ require('./includes/defaults.php');
+ require('./includes/config.php');
+ 
+@@ -39,7 +39,7 @@
+ $tpl = new Smarty;
+ 
+ //smarty plugins laden (im moment nur eine substr() funktion)
+-$tpl->plugins_dir[] = "./includes/smarty_plugins";
++$tpl->plugins_dir[] = "/usr/share/php/Smarty/plugins";
+ 
+ //language basis file laden
+ $tpl->config_load(getcwd().'/lang/lang_en.conf','en');
+Tylko w ZoneAdmin-0.2-beta1.new/: index.php~
