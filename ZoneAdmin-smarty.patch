@@ -1,12 +1,12 @@
 diff -ur ZoneAdmin-0.2-beta1/includes/smarty/libs/Smarty.class.php ZoneAdmin-0.2-beta1.new/includes/smarty/libs/Smarty.class.php
 --- ZoneAdmin-0.2-beta1/includes/smarty/libs/Smarty.class.php	2007-09-27 12:12:39.000000000 +0200
-+++ ZoneAdmin-0.2-beta1.new/includes/smarty/libs/Smarty.class.php	2007-10-12 21:50:53.653532421 +0200
++++ ZoneAdmin-0.2-beta1.new/includes/smarty/libs/Smarty.class.php	2007-10-12 22:10:07.958967866 +0200
 @@ -79,7 +79,7 @@
       *
       * @var string
       */
 -    var $compile_dir     =  'templates_c';
-+    var $compile_dir     =  '/var/lib/zavar/templates_c';
++    var $compile_dir     =  '/var/lib/ZoneAdmin/templates_c';
  
      /**
       * The directory where config files are located.
