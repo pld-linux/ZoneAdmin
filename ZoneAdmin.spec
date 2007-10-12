@@ -6,6 +6,7 @@ License:	GPL
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/zoneadmin/%{name}-%{version}-beta1.tar.gz
 # Source0-md5:	a848e14d947d41734d8a23d72d0196da
+Patch0:		%{name}-smarty.patch
 URL:		http://open.megabit.net/index.php?section=pro_home&project=ZoneAdmin
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	Smarty >= 2.6.18-2
@@ -19,6 +20,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_webapps	/etc/webapps
 %define		_webapp		%{name}
+%define		_smartyplugindir	/usr/share/php/Smarty/plugins
 %define		_sysconfdir	%{_webapps}/%{_webapp}
 %define		_appdir		%{_datadir}/%{_webapp}
 
@@ -34,6 +36,9 @@ Apache's authentication methods.
 
 %prep
 %setup -q -n %{name}-%{version}-beta1
+%patch0 -p1
+
+mkdir smarty-plugins
 
 cat > apache.conf <<'EOF'
 Alias /%{name} %{_appdir}
@@ -43,12 +48,13 @@ Alias /%{name} %{_appdir}
 EOF
 
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_appdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_smartyplugindir},%{_appdir}}
 
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 install *.php	$RPM_BUILD_ROOT%{_appdir}
 cp -a {contrib,img,includes,lang,templates_c,tpl}	$RPM_BUILD_ROOT%{_appdir}
+cp -a includes/smarty/libs/*	$RPM_BUILD_ROOT%{_smartyplugindir}
 mv $RPM_BUILD_ROOT%{_appdir}/includes/config.php.dist $RPM_BUILD_ROOT%{_sysconfdir}/config.php
 ln -s %{_sysconfdir}/config.php		$RPM_BUILD_ROOT%{_appdir}/includes/config.php
 
@@ -102,3 +108,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdir}/tpl/Boxes/img/*.jpg
 %{_appdir}/tpl/Boxes/img/*.gif
 %dir %attr(770,root,http) %{_appdir}/templates_c
+%{_smartyplugindir}/*
