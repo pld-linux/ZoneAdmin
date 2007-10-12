@@ -22,6 +22,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_webapp		%{name}
 %define		_smartyplugindir	/usr/share/php/Smarty/plugins
 %define		_sysconfdir	%{_webapps}/%{_webapp}
+%define		_zavar		/var/lib/%{name}
 %define		_appdir		%{_datadir}/%{_webapp}
 
 %description
@@ -48,7 +49,7 @@ Alias /%{name} %{_appdir}
 EOF
 
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_smartyplugindir},%{_appdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_smartyplugindir},%{_zavar}/templates_c,%{_appdir}}
 
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
@@ -107,5 +108,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_appdir}/tpl/Boxes/img
 %{_appdir}/tpl/Boxes/img/*.jpg
 %{_appdir}/tpl/Boxes/img/*.gif
-%dir %attr(770,root,http) %{_appdir}/templates_c
 %{_smartyplugindir}/*
+%dir %{_zavar}
+%attr(770,root,http) %{_zavar}/templates_c
