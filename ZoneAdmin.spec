@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %attr(750,root,http) %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
-%attr(660,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/config.php
+%attr(660,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/config.php
 %{_appdir}/*.php
 %dir %{_appdir}/contrib
 %{_appdir}/contrib/*.php
