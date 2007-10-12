@@ -47,6 +47,8 @@ install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 install *.php	$RPM_BUILD_ROOT%{_appdir}
 cp -a {contrib,img,includes,lang,templates_c,tpl}	$RPM_BUILD_ROOT%{_appdir}
+mv $RPM_BUILD_ROOT%{_appdir}/includes/config.php.dist $RPM_BUILD_ROOT%{_sysconfdir}/config.php
+ln -s %{_sysconfdir}/config.php		$RPM_BUILD_ROOT%{_appdir}/includes/config.php
 
 %triggerin -- apache1 < 1.3.37-3, apache1-base
 %webapp_register apache %{_webapp}
@@ -68,6 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %attr(750,root,http) %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
+%attr(660,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/config.php
 %{_appdir}/*.php
 %dir %{_appdir}/contrib
 %{_appdir}/contrib/*.php
@@ -77,7 +80,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdir}/img/*.png
 %dir %{_appdir}/includes
 %{_appdir}/includes/*.php
-%{_appdir}/includes/*.dist
 %dir %{_appdir}/includes/smarty/libs/
 %{_appdir}/includes/smarty/libs/*.php
 %{_appdir}/includes/smarty/libs/*.tpl
