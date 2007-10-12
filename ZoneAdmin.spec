@@ -39,8 +39,6 @@ Apache's authentication methods.
 %setup -q -n %{name}-%{version}-beta1
 %patch0 -p1
 
-mkdir smarty-plugins
-
 cat > apache.conf <<'EOF'
 Alias /%{name} %{_appdir}
 <Directory %{_appdir}>
@@ -54,8 +52,8 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_smartyplugindir},%{_zavar}/template
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 install *.php	$RPM_BUILD_ROOT%{_appdir}
-cp -a {contrib,img,includes,lang,templates_c,tpl}	$RPM_BUILD_ROOT%{_appdir}
-cp -a includes/smarty/libs/*	$RPM_BUILD_ROOT%{_smartyplugindir}
+cp -a {contrib,img,includes,lang,tpl}	$RPM_BUILD_ROOT%{_appdir}
+cp -a includes/smarty/libs/plugins/*	$RPM_BUILD_ROOT%{_smartyplugindir}
 mv $RPM_BUILD_ROOT%{_appdir}/includes/config.php.dist $RPM_BUILD_ROOT%{_sysconfdir}/config.php
 ln -s %{_sysconfdir}/config.php		$RPM_BUILD_ROOT%{_appdir}/includes/config.php
 
@@ -94,13 +92,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdir}/includes/smarty/libs/*.tpl
 %dir %{_appdir}/includes/smarty/libs/internals
 %{_appdir}/includes/smarty/libs/internals/*.php
-%dir %{_appdir}/includes/smarty/libs/plugins
-%{_appdir}/includes/smarty/libs/plugins/*.php
-%dir %{_appdir}/includes/smarty_plugins
-%{_appdir}/includes/smarty_plugins/*.php
+#%dir %{_appdir}/includes/smarty/libs/plugins
+#%{_appdir}/includes/smarty/libs/plugins/*.php
+#%dir %{_appdir}/includes/smarty_plugins
+#%{_appdir}/includes/smarty_plugins/*.php
 %dir %{_appdir}/lang
 %{_appdir}/lang/*.conf
-%dir %{_appdir}/templates_c
 %dir %{_appdir}/tpl/Boxes
 %{_appdir}/tpl/Boxes/*.css
 %{_appdir}/tpl/Boxes/*.js
