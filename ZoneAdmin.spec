@@ -1,11 +1,11 @@
 Summary:	A Web-based administration interface for powerDNS
 Name:		ZoneAdmin
-Version:	0.1
+Version:	0.2
 Release:	0.1
 License:	GPL
 Group:		Applications/WWW
-Source0:	http://dl.sourceforge.net/zoneadmin/%{name}-%{version}-stable.tar.gz
-# Source0-md5:	1552f1c4e179a9cba3b6eebaa4c0f431
+Source0:	http://dl.sourceforge.net/zoneadmin/%{name}-%{version}-beta1.tar.gz
+# Source0-md5:	a848e14d947d41734d8a23d72d0196da
 URL:		http://open.megabit.net/index.php?section=pro_home&project=ZoneAdmin
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	webapps
@@ -31,7 +31,7 @@ that contain predefined records. It is designed to be used with one of
 Apache's authentication methods.
 
 %prep
-%setup -q -n %{name}-%{version}-stable
+%setup -q -n %{name}-%{version}-beta1
 
 cat > apache.conf <<'EOF'
 Alias /%{name} %{_appdir}
