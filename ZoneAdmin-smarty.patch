@@ -13,16 +13,7 @@ diff -ur ZoneAdmin-0.2-beta1/includes/smarty/libs/Smarty.class.php ZoneAdmin-0.2
 Tylko w ZoneAdmin-0.2-beta1.new/includes/smarty/libs: Smarty.class.php~
 diff -ur ZoneAdmin-0.2-beta1/index.php ZoneAdmin-0.2-beta1.new/index.php
 --- ZoneAdmin-0.2-beta1/index.php	2007-09-27 12:12:39.000000000 +0200
-+++ ZoneAdmin-0.2-beta1.new/index.php	2007-10-12 21:27:14.524592357 +0200
-@@ -13,7 +13,7 @@
- 
- // vim:tabstop=2:expandtab:shiftwidth=2:filetype=php:syntax:ruler:
- 
--require('./includes/smarty/libs/Smarty.class.php');
-+require('/usr/share/php/Smarty/Smarty.class.php');
- require('./includes/defaults.php');
- require('./includes/config.php');
- 
++++ ZoneAdmin-0.2-beta1.new/index.php	2007-10-12 22:03:29.959241829 +0200
 @@ -39,7 +39,7 @@
  $tpl = new Smarty;
  
