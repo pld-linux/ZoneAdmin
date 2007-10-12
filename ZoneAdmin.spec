@@ -8,7 +8,9 @@ Source0:	http://dl.sourceforge.net/zoneadmin/%{name}-%{version}-beta1.tar.gz
 # Source0-md5:	a848e14d947d41734d8a23d72d0196da
 URL:		http://open.megabit.net/index.php?section=pro_home&project=ZoneAdmin
 BuildRequires:	rpmbuild(macros) >= 1.268
+Requires:	Smarty >= 2.6.18-2
 Requires:	webapps
+Requires:	webserver(php)
 %if %{with trigger}
 Requires(triggerpostun):	sed >= 4.0
 %endif
