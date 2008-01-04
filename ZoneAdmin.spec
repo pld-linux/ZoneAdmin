@@ -1,4 +1,5 @@
 Summary:	A Web-based administration interface for powerDNS
+Summary(pl.UTF-8):	Interfejs administracyjny WWW do serwera powerDNS
 Name:		ZoneAdmin
 Version:	0.2
 Release:	0.1
@@ -12,9 +13,6 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	Smarty >= 2.6.18-2
 Requires:	webapps
 Requires:	webserver(php)
-%if %{with trigger}
-Requires(triggerpostun):	sed >= 4.0
-%endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -34,6 +32,17 @@ history of changes and allows you to temporary enable or disable zones
 without having to remove them completely. New zones can use templates
 that contain predefined records. It is designed to be used with one of
 Apache's authentication methods.
+
+%description -l pl.UTF-8
+ZoneAdmin to interfejs WWW do serwera nazw powerDNS wykorzystującego
+backend MySQL. Pozwala na zarządzanie istniejącymi strefami oraz
+dodawanie, usuwanie i zmianę nowych; obsługuje sprawdzanie poprawności
+danych wejściowych w locie, pozwala na dodawanie komentarzy dla całej
+strefy oraz dla każdego rekordu. Ponadto utrzymuje szczegółową
+historię zmian i pozwala na tymczasowe włączanie i wyłączanie stref
+bez potrzeby całkowitego usuwania ich. Nowe strefy mogą wykorzystywać
+szablony z predefiniowanymi rekordami. Interfejs jest zaprojektowany
+do używania z jedną z metod uwierzytelniania serwera Apache.
 
 %prep
 %setup -q -n %{name}-%{version}-beta1
@@ -57,6 +66,9 @@ cp -a includes/smarty/libs/plugins/*	$RPM_BUILD_ROOT%{_smartyplugindir}
 mv $RPM_BUILD_ROOT%{_appdir}/includes/config.php.dist $RPM_BUILD_ROOT%{_sysconfdir}/config.php
 ln -s %{_sysconfdir}/config.php		$RPM_BUILD_ROOT%{_appdir}/includes/config.php
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %triggerin -- apache1 < 1.3.37-3, apache1-base
 %webapp_register apache %{_webapp}
 
@@ -68,9 +80,6 @@ ln -s %{_sysconfdir}/config.php		$RPM_BUILD_ROOT%{_appdir}/includes/config.php
 
 %triggerun -- apache < 2.2.0, apache-base
 %webapp_unregister httpd %{_webapp}
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
