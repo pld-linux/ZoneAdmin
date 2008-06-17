@@ -9,7 +9,7 @@ Source0:	http://dl.sourceforge.net/zoneadmin/%{name}-%{version}-beta1.tar.gz
 # Source0-md5:	a848e14d947d41734d8a23d72d0196da
 Patch0:		%{name}-smarty.patch
 URL:		http://open.megabit.net/index.php?section=pro_home&project=ZoneAdmin
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	rpmbuild(macros) >= 1.461
 Requires:	Smarty >= 2.6.18-2
 Requires:	webapps
 Requires:	webserver(php)
@@ -18,7 +18,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_webapps	/etc/webapps
 %define		_webapp		%{name}
-%define		_smartyplugindir	/usr/share/php/Smarty/plugins
+%define		_smartyplugindir	%{php_data_dir}/Smarty/plugins
 %define		_sysconfdir	%{_webapps}/%{_webapp}
 %define		_zavar		/var/lib/%{name}
 %define		_appdir		%{_datadir}/%{_webapp}
